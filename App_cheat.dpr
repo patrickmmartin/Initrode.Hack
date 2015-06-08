@@ -1,4 +1,4 @@
-program App_dynamic;
+program App_cheat;
 
 {$APPTYPE CONSOLE}
 
@@ -7,14 +7,19 @@ uses
   Windows;
 
 var
+  HForcemod : HMODULE;
   Hmod : HMODULE;
   Proc: function: Integer; stdcall;
   SecretFunction : integer;
 begin
   try
-    WriteLn('App dynamic start');
-    OutputDebugString('A_dynamic.main');
-    HMod := LoadLibrary('A_dynamic.dll');
+    WriteLn('App cheat start');
+
+    CopyFile('other\B_.dll', 'other\B.dll', false);
+
+    OutputDebugString('A_cheat.main');
+    HForceMod := LoadLibrary('other\B.dll');
+    HMod := LoadLibrary('A_static.dll');
     Proc := GetProcAddress(Hmod, 'SecretFunction');
     if Assigned(Proc) then
       SecretFunction := Proc()

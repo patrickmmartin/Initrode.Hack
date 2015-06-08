@@ -18,4 +18,5 @@ end;
 exports MySecretFunction name 'SecretFunction';
 
 begin
+  WriteLn('A static Loaded');
 end.

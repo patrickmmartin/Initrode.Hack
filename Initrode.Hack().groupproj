@@ -18,6 +18,12 @@
 			<Projects Include="App_dynamic.dproj">
 				<Dependencies>A_dynamic.dproj</Dependencies>
 			</Projects>
+			<Projects Include="other\B_.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="App_cheat.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +77,32 @@
 		<Target DependsOnTargets="A_dynamic:Make" Name="App_dynamic:Make">
 			<MSBuild Targets="Make" Projects="App_dynamic.dproj"/>
 		</Target>
+		<Target Name="B_">
+			<MSBuild Projects="other\B_.dproj"/>
+		</Target>
+		<Target Name="B_:Clean">
+			<MSBuild Targets="Clean" Projects="other\B_.dproj"/>
+		</Target>
+		<Target Name="B_:Make">
+			<MSBuild Targets="Make" Projects="other\B_.dproj"/>
+		</Target>
+		<Target Name="App_cheat">
+			<MSBuild Projects="App_cheat.dproj"/>
+		</Target>
+		<Target Name="App_cheat:Clean">
+			<MSBuild Targets="Clean" Projects="App_cheat.dproj"/>
+		</Target>
+		<Target Name="App_cheat:Make">
+			<MSBuild Targets="Make" Projects="App_cheat.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="B;A_static;A_dynamic;App_static;App_dynamic"/>
+			<CallTarget Targets="B;A_static;A_dynamic;App_static;App_dynamic;B_;App_cheat"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="B:Clean;A_static:Clean;A_dynamic:Clean;App_static:Clean;App_dynamic:Clean"/>
+			<CallTarget Targets="B:Clean;A_static:Clean;A_dynamic:Clean;App_static:Clean;App_dynamic:Clean;B_:Clean;App_cheat:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="B:Make;A_static:Make;A_dynamic:Make;App_static:Make;App_dynamic:Make"/>
+			<CallTarget Targets="B:Make;A_static:Make;A_dynamic:Make;App_static:Make;App_dynamic:Make;B_:Make;App_cheat:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>
