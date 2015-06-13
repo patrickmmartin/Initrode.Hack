@@ -19,7 +19,6 @@ uses
 
 function SecretFunction: Integer; stdcall;
 begin
-  WriteLn('B Loaded');
   WriteLn('... not really!');
   OutputDebugString('B_.SecretFunction!!!');
   Result := 12;
@@ -27,4 +26,7 @@ end;
 
 exports SecretFunction;
 
+
+begin
+  WriteLn('B Loaded');
 end.

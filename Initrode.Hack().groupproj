@@ -24,6 +24,12 @@
 			<Projects Include="App_cheat.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="Nope.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Denied.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +101,32 @@
 		<Target Name="App_cheat:Make">
 			<MSBuild Targets="Make" Projects="App_cheat.dproj"/>
 		</Target>
+		<Target Name="Nope">
+			<MSBuild Projects="Nope.dproj"/>
+		</Target>
+		<Target Name="Nope:Clean">
+			<MSBuild Targets="Clean" Projects="Nope.dproj"/>
+		</Target>
+		<Target Name="Nope:Make">
+			<MSBuild Targets="Make" Projects="Nope.dproj"/>
+		</Target>
+		<Target Name="Denied">
+			<MSBuild Projects="Denied.dproj"/>
+		</Target>
+		<Target Name="Denied:Clean">
+			<MSBuild Targets="Clean" Projects="Denied.dproj"/>
+		</Target>
+		<Target Name="Denied:Make">
+			<MSBuild Targets="Make" Projects="Denied.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="B;A_static;A_dynamic;App_static;App_dynamic;B_;App_cheat"/>
+			<CallTarget Targets="B;A_static;A_dynamic;App_static;App_dynamic;B_;App_cheat;Nope;Denied"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="B:Clean;A_static:Clean;A_dynamic:Clean;App_static:Clean;App_dynamic:Clean;B_:Clean;App_cheat:Clean"/>
+			<CallTarget Targets="B:Clean;A_static:Clean;A_dynamic:Clean;App_static:Clean;App_dynamic:Clean;B_:Clean;App_cheat:Clean;Nope:Clean;Denied:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="B:Make;A_static:Make;A_dynamic:Make;App_static:Make;App_dynamic:Make;B_:Make;App_cheat:Make"/>
+			<CallTarget Targets="B:Make;A_static:Make;A_dynamic:Make;App_static:Make;App_dynamic:Make;B_:Make;App_cheat:Make;Nope:Make;Denied:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>

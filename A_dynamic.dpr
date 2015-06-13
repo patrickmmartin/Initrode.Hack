@@ -12,7 +12,6 @@ var
   Hmod : HMODULE;
   Proc: function: Integer; stdcall;
 begin
-  WriteLn('A dynamic loaded');
   OutputDebugString('A_dynamic.SecretFunction');
   HMod := LoadLibrary('B.dll');
   Proc := GetProcAddress(Hmod, 'SecretFunction');
@@ -25,4 +24,5 @@ end;
 exports SecretFunction;
 
 begin
+  WriteLn('A dynamic loaded');
 end.
