@@ -6,7 +6,7 @@ uses
   SysUtils,
   Windows;
 
-procedure Success; stdcall; external 'A_static.dll';
+procedure Success; stdcall; external 'Nope.dll';
 
 
 begin
