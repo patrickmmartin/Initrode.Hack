@@ -44,6 +44,12 @@
 			<DelphiCompile Include="B_.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="..\OutColours.pas">
+				<Form>$R *.res</Form>
+			</DCCReference>
+			<DCCReference Include="..\..\Initrode.Hack()">
+				<Form>$R *.res</Form>
+			</DCCReference>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

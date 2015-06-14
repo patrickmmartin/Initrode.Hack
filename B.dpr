@@ -3,13 +3,16 @@ library B;
 uses
   SysUtils,
   Classes,
-  Windows;
+  Windows,
+  OutColours;
 
 {$R *.res}
 
 function SecretFunction: Integer; stdcall;
 begin
-  OutputDebugString('B.SecretFunction');
+  Red;
+  WriteLn('B.SecretFunction');
+  Grey;
   Result := 12;
 end;
 
@@ -17,5 +20,7 @@ exports SecretFunction;
 
 
 begin
+  Green;
   WriteLn('B Loaded');
+  Grey;
 end.

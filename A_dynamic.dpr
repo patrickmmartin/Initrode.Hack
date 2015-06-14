@@ -3,7 +3,8 @@ library A_dynamic;
 uses
   SysUtils,
   Classes,
-  Windows;
+  Windows,
+  OutColours;
 
 {$R *.res}
 
@@ -12,6 +13,7 @@ var
   Hmod : HMODULE;
   Proc: function: Integer; stdcall;
 begin
+  Red;
   OutputDebugString('A_dynamic.SecretFunction');
   HMod := LoadLibrary('B.dll');
   Proc := GetProcAddress(Hmod, 'SecretFunction');
@@ -19,10 +21,13 @@ begin
     Result := Proc()
   else
     Result := -1;
+  Grey;
 end;
 
 exports SecretFunction;
 
 begin
-  WriteLn('A dynamic loaded');
+  Green;
+  WriteLn('A_dynamic loaded');
+  Grey;
 end.

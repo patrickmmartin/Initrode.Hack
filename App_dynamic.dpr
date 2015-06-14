@@ -13,7 +13,6 @@ var
 begin
   try
     WriteLn('App dynamic start');
-    OutputDebugString('A_dynamic.main');
     HMod := LoadLibrary('A_dynamic.dll');
     Proc := GetProcAddress(Hmod, 'SecretFunction');
     if Assigned(Proc) then

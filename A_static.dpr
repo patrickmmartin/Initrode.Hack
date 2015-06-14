@@ -3,7 +3,8 @@ library A_static;
 uses
   SysUtils,
   Classes,
-  Windows;
+  Windows,
+  OutColours;
 
 {$R *.res}
 
@@ -11,12 +12,15 @@ function SecretFunction: Integer; stdcall; external 'B.dll';
 
 function MySecretFunction: Integer; stdcall;
 begin
-  OutputDebugString('A_static.SecretFunction');
+  Red;
   Result := SecretFunction;
+  Grey;
 end;
 
 exports MySecretFunction name 'SecretFunction';
 
 begin
-  WriteLn('A static Loaded');
+  Green;
+  WriteLn('A_static Loaded');
+  Grey;
 end.

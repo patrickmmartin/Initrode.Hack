@@ -3,7 +3,8 @@ library Nope;
 uses
   SysUtils,
   Classes,
-  Windows;
+  Windows,
+  OutColours;
 
 {$R *.res}
 
@@ -16,8 +17,13 @@ exports Success;
 
 begin
 
+  Green;
   WriteLn('Nope Loaded');
 
+  Red;
+  WriteLn('Nope: It''s going to have to be a "No", this time');
+
+  Grey;
   ExitCode := 1;
 
 end.

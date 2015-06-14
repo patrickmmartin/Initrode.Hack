@@ -9,7 +9,7 @@ uses
 function SecretFunction: Integer; stdcall; external 'A_static.dll';
 
 begin
-  OutputDebugString('App_static.Main');
+  OutputDebugString('App_static Main');
   try
     WriteLn('App static start');
     WriteLn('SecretFunction: ', SecretFunction);

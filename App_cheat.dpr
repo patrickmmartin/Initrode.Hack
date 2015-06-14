@@ -13,11 +13,10 @@ var
   SecretFunction : integer;
 begin
   try
-    WriteLn('App cheat start');
+    WriteLn('App_cheat start');
 
     CopyFile('other\B_.dll', 'other\B.dll', false);
 
-    OutputDebugString('A_cheat.main');
     HForceMod := LoadLibrary('other\B.dll');
     HMod := LoadLibrary('A_static.dll');
     Proc := GetProcAddress(Hmod, 'SecretFunction');
