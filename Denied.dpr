@@ -10,7 +10,6 @@ procedure Success; stdcall; external 'Nope.dll';
 
 
 begin
-  OutputDebugString('Denied Main');
   try
     WriteLn('App denied start');
     WriteLn('Are we in?: ');

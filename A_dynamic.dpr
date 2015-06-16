@@ -14,7 +14,6 @@ var
   Proc: function: Integer; stdcall;
 begin
   Red;
-  OutputDebugString('A_dynamic.SecretFunction');
   HMod := LoadLibrary('B.dll');
   Proc := GetProcAddress(Hmod, 'SecretFunction');
   if Assigned(Proc) then
