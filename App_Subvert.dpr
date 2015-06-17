@@ -42,6 +42,7 @@ var
   PeImportHooks: TJclPeMapImgHooks;
   Hmod : HMODULE;
   OldGetProc : TProcedure;
+  RetVal : integer;
 begin
   try
     WriteLn('App subvert start');
@@ -58,7 +59,8 @@ begin
       else
         WriteLn(Format('GetProcAddress hooking error - %s', [SysErrorMessage(GetLastError)]));
 
-        WriteLn('SecretFunction: ', SecretFunction);
+        RetVal := SecretFunction;
+        WriteLn('SecretFunction: ', RetVal);
     finally
       PeImportHooks.Free;
     end;
