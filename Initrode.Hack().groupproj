@@ -6,20 +6,23 @@
 			<Projects Include="B.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="other\B_.dproj">
+				<Dependencies/>
+			</Projects>
 			<Projects Include="A_static.dproj">
 				<Dependencies>B.dproj</Dependencies>
 			</Projects>
 			<Projects Include="A_dynamic.dproj">
 				<Dependencies>B.dproj</Dependencies>
 			</Projects>
+			<Projects Include="A_tough.dproj">
+				<Dependencies/>
+			</Projects>
 			<Projects Include="App_static.dproj">
 				<Dependencies>A_dynamic.dproj</Dependencies>
 			</Projects>
 			<Projects Include="App_dynamic.dproj">
 				<Dependencies>A_dynamic.dproj</Dependencies>
-			</Projects>
-			<Projects Include="other\B_.dproj">
-				<Dependencies/>
 			</Projects>
 			<Projects Include="Nope.dproj">
 				<Dependencies/>
@@ -32,6 +35,9 @@
 			</Projects>
 			<Projects Include="App_Subvert.dproj">
 				<Dependencies>B.dproj;A_dynamic.dproj</Dependencies>
+			</Projects>
+			<Projects Include="App_Subvert2.dproj">
+				<Dependencies>A_tough.dproj;other\B_.dproj</Dependencies>
 			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
@@ -49,6 +55,15 @@
 		</Target>
 		<Target Name="B:Make">
 			<MSBuild Targets="Make" Projects="B.dproj"/>
+		</Target>
+		<Target Name="B_">
+			<MSBuild Projects="other\B_.dproj"/>
+		</Target>
+		<Target Name="B_:Clean">
+			<MSBuild Targets="Clean" Projects="other\B_.dproj"/>
+		</Target>
+		<Target Name="B_:Make">
+			<MSBuild Targets="Make" Projects="other\B_.dproj"/>
 		</Target>
 		<Target DependsOnTargets="B" Name="A_static">
 			<MSBuild Projects="A_static.dproj"/>
@@ -68,6 +83,15 @@
 		<Target DependsOnTargets="B:Make" Name="A_dynamic:Make">
 			<MSBuild Targets="Make" Projects="A_dynamic.dproj"/>
 		</Target>
+		<Target Name="A_tough">
+			<MSBuild Projects="A_tough.dproj"/>
+		</Target>
+		<Target Name="A_tough:Clean">
+			<MSBuild Targets="Clean" Projects="A_tough.dproj"/>
+		</Target>
+		<Target Name="A_tough:Make">
+			<MSBuild Targets="Make" Projects="A_tough.dproj"/>
+		</Target>
 		<Target DependsOnTargets="A_dynamic" Name="App_static">
 			<MSBuild Projects="App_static.dproj"/>
 		</Target>
@@ -85,15 +109,6 @@
 		</Target>
 		<Target DependsOnTargets="A_dynamic:Make" Name="App_dynamic:Make">
 			<MSBuild Targets="Make" Projects="App_dynamic.dproj"/>
-		</Target>
-		<Target Name="B_">
-			<MSBuild Projects="other\B_.dproj"/>
-		</Target>
-		<Target Name="B_:Clean">
-			<MSBuild Targets="Clean" Projects="other\B_.dproj"/>
-		</Target>
-		<Target Name="B_:Make">
-			<MSBuild Targets="Make" Projects="other\B_.dproj"/>
 		</Target>
 		<Target Name="Nope">
 			<MSBuild Projects="Nope.dproj"/>
@@ -131,14 +146,23 @@
 		<Target DependsOnTargets="B:Make;A_dynamic:Make" Name="App_Subvert:Make">
 			<MSBuild Targets="Make" Projects="App_Subvert.dproj"/>
 		</Target>
+		<Target DependsOnTargets="A_tough;B_" Name="App_Subvert2">
+			<MSBuild Projects="App_Subvert2.dproj"/>
+		</Target>
+		<Target DependsOnTargets="A_tough:Clean;B_:Clean" Name="App_Subvert2:Clean">
+			<MSBuild Targets="Clean" Projects="App_Subvert2.dproj"/>
+		</Target>
+		<Target DependsOnTargets="A_tough:Make;B_:Make" Name="App_Subvert2:Make">
+			<MSBuild Targets="Make" Projects="App_Subvert2.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="B;A_static;A_dynamic;App_static;App_dynamic;B_;Nope;Denied;App_cheat;App_Subvert"/>
+			<CallTarget Targets="B;B_;A_static;A_dynamic;A_tough;App_static;App_dynamic;Nope;Denied;App_cheat;App_Subvert;App_Subvert2"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="B:Clean;A_static:Clean;A_dynamic:Clean;App_static:Clean;App_dynamic:Clean;B_:Clean;Nope:Clean;Denied:Clean;App_cheat:Clean;App_Subvert:Clean"/>
+			<CallTarget Targets="B:Clean;B_:Clean;A_static:Clean;A_dynamic:Clean;A_tough:Clean;App_static:Clean;App_dynamic:Clean;Nope:Clean;Denied:Clean;App_cheat:Clean;App_Subvert:Clean;App_Subvert2:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="B:Make;A_static:Make;A_dynamic:Make;App_static:Make;App_dynamic:Make;B_:Make;Nope:Make;Denied:Make;App_cheat:Make;App_Subvert:Make"/>
+			<CallTarget Targets="B:Make;B_:Make;A_static:Make;A_dynamic:Make;A_tough:Make;App_static:Make;App_dynamic:Make;Nope:Make;Denied:Make;App_cheat:Make;App_Subvert:Make;App_Subvert2:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>
